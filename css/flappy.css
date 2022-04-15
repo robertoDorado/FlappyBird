@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'i_pixel';
+    src: url('../fonts/i-pixel-u-webfont.woff2') format('woff2'),
+         url('../fonts/i-pixel-u-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+*{
+    box-sizing:border-box;
+    font-family: 'Oswald', sans-serif;
+    background:rgb(5, 5, 73);
+}
+[wm-flappy] {
+    position:relative;
+    border: 5px solid dodgerblue;
+    height:500px;
+    width:1200px;
+    margin:15px;
+    margin-left:60px;
+    background-color: deepskyblue;
+    padding-bottom:8%;
+    overflow:hidden;
+    z-index:0;
+
+}
+.main{
+    color:white;
+    margin-left: 40px;
+}
+.main h2{
+    margin-left:20px;
+}
+.conteudo h1{
+    color:white;
+    text-align:center;
+}
+.passaro{
+    position:absolute;
+    width:60px;
+    left: calc(50% - 30px);
+    /* bottom:50%; */
+    background:none;
+    z-index:2;
+}
+.par-de-barreiras{
+    position:absolute;
+    top:0;
+    height:100%;
+    display:flex;
+    flex-direction:column; 
+    justify-content: space-between; 
+    background:none;
+    z-index:2;
+}
+.barreira{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background:none;
+}
+.barreira .borda{
+    height:30px;
+    width:130px;
+    background:linear-gradient(90deg, #639301, #a5e82e);
+    border:2px solid #000000;
+}
+.barreira .corpo{
+    height:150px;
+    width:110px;
+    background:linear-gradient(90deg, #639301, #a5e82e);
+    border-left:2px solid #000000;
+    border-right:2px solid #000000;
+}
+.progresso{
+    position:absolute;
+    top:10px;
+    right:10px;
+    font-family: 'i_pixel';
+    font-size: 70px;
+    background:none;
+    color:white;
+    z-index:3;   
+}
+.terrinha{
+    height:200px;
+    background:#aa9745;
+    margin-top:270px;
+}
+.graminha{
+    background:rgb(42, 221, 42);
+    height:20px;
+}
+.sol{
+    width:150px;
+    height:150px;
+    background:yellow;
+    border-radius:150px;
+    margin-top:40px;
+    margin-left:30px;
+}
