@@ -163,23 +163,18 @@ function pontuacaoMinima(progresso, barreiras, campos) {
             abertura = deslocamento - 100
             espaco = deslocamento - 100
         break 
-        case 7:
-            deslocamento = 7
+        case 15:
+            deslocamento = 8
             abertura = deslocamento - 100
             espaco = deslocamento - 100
         break 
-        case 9:
+        case 20:
             deslocamento = 9
             abertura = deslocamento - 100
             espaco = deslocamento - 100
         break 
-        case 11:
-            deslocamento = 11
-            abertura = deslocamento - 100
-            espaco = deslocamento - 100
-        break 
-        case 13:
-            deslocamento = 13
+        case 25:
+            deslocamento = 10
             abertura = deslocamento - 100
             espaco = deslocamento - 100
         break 
