@@ -39,9 +39,6 @@ function ParDeBarreiras(altura, abertura, x) {
 
 }
 
-// const b = new ParDeBarreiras(500, 200, 400)
-// document.querySelector('[wm-flappy]').appendChild(b.elemento)
-
 function Barreiras(altura, largura, abertura, espaco, notificarPonto) {
 
     this.pares = [
@@ -64,9 +61,17 @@ function Barreiras(altura, largura, abertura, espaco, notificarPonto) {
             const meio = largura / 2
             const cruzouOMeio = par.getX() + this.deslocamento >= meio
                 && par.getX() < meio
-            if (cruzouOMeio) notificarPonto()
+            if (cruzouOMeio) {
+                notificarPonto()
+                somEfeito()
+            }
         })
     }
+}
+
+function somEfeito() {
+    const efeito = document.querySelector('#stopButton4')
+    efeito.click()
 }
 
 function Passaro(alturaJogo) {
@@ -97,6 +102,10 @@ function Passaro(alturaJogo) {
     this.setY(alturaJogo / 2)
 }
 
+function nivelExplicito() {
+    this.elemento = novoElemento('span', 'nivel')
+}
+
 
 function Progresso() {
     this.elemento = novoElemento('span', 'progresso')
@@ -108,19 +117,20 @@ function Progresso() {
 
 function FlappyBird() {
     let pontos = 0
-    const campos = new EspacoAbertura(200, 500)
 
     const areaDoJogo = document.querySelector('[wm-flappy]')
     const altura = areaDoJogo.clientHeight
     const largura = areaDoJogo.clientWidth
 
     const progresso = new Progresso()
-    
-    const barreiras = new Barreiras(altura, largura, campos.abertura, campos.espaco,
+
+    const barreiras = new Barreiras(altura, largura, 200, 500,
         () => progresso.atualizarPontos(++pontos))
 
     const passaro = new Passaro(altura)
+    const nivel = new nivelExplicito()
 
+    areaDoJogo.appendChild(nivel.elemento)
     areaDoJogo.appendChild(progresso.elemento)
     areaDoJogo.appendChild(passaro.elemento)
     barreiras.pares.forEach(par => areaDoJogo.appendChild(par.elemento))
@@ -129,11 +139,12 @@ function FlappyBird() {
         let temporizador = setInterval(() => {
             barreiras.animar()
             passaro.animar()
-            let dificuldade = pontuacaoMinima(progresso, barreiras, campos)
+            let dificuldade = pontuacaoMinima(progresso, barreiras)
 
-            barreiras.deslocamento = dificuldade
+            barreiras.deslocamento = dificuldade[0]
+            nivel.elemento.innerHTML = dificuldade[1]
 
-            if(passaro.getY() == 0) {
+            if (passaro.getY() == 0) {
                 alert('perdeu!')
                 clearInterval(temporizador)
                 window.location.href = window.location.href
@@ -151,28 +162,32 @@ function FlappyBird() {
 function pontuacaoMinima(progresso, barreiras) {
     let minimo = parseInt(progresso.elemento.innerHTML)
     let deslocamento = parseInt(barreiras.deslocamento)
+    let nivel = null
 
-    switch(minimo){
+    switch (minimo) {
+        case 1:
+            deslocamento = 4
+            nivel = 'easy'
+            break
         case 5:
             deslocamento = 5
-        break 
+            nivel = 'medium'
+            break
         case 15:
             deslocamento = 8
-        break 
+            nivel = 'extreme-medium'
+            break
         case 20:
             deslocamento = 9
-        break 
+            nivel = 'hard'
+            break
         case 25:
             deslocamento = 10
-        break 
+            nivel = 'extreme-hard'
+            break
     }
 
-    return deslocamento
-}
-
-function EspacoAbertura(abertura, espaco) {
-    this.abertura = abertura
-    this.espaco = espaco
+    return [deslocamento, nivel]
 }
 
 function estaoSobrepostos(elementoA, elementoB) {
