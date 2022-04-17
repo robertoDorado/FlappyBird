@@ -167,23 +167,31 @@ function pontuacaoMinima(progresso, barreiras) {
     switch (minimo) {
         case 1:
             deslocamento = 4
-            nivel = 'easy'
+            nivel = "so easy! :)"
             break
         case 5:
             deslocamento = 5
-            nivel = 'medium'
+            nivel = "I'm very good!"
             break
         case 15:
             deslocamento = 8
-            nivel = 'extreme-medium'
+            nivel = "it's getting hard"
             break
         case 20:
             deslocamento = 9
-            nivel = 'hard'
+            nivel = "damn, it's too fast!"
             break
         case 25:
             deslocamento = 10
-            nivel = 'extreme-hard'
+            nivel = "watch out!"
+            break
+        case 40:
+            deslocamento = 13
+            nivel = "that's impossible"
+            break
+        case 45:
+            deslocamento = 15
+            nivel = "amazing!"
             break
     }
 

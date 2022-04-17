@@ -20,7 +20,7 @@ function start() {
 function stop() {
     start();
     contextGain.gain.exponentialRampToValueAtTime(
-        0.0001, context.currentTime + x
+        0.00050, context.currentTime + x
     )
 }
 
