@@ -131,9 +131,7 @@ function FlappyBird() {
             passaro.animar()
             let dificuldade = pontuacaoMinima(progresso, barreiras, campos)
 
-            barreiras.deslocamento = dificuldade[0]
-            campos.abertura = dificuldade[2]
-            campos.espaco = dificuldade[1]
+            barreiras.deslocamento = dificuldade
 
             if(passaro.getY() == 0) {
                 alert('perdeu!')
@@ -150,37 +148,26 @@ function FlappyBird() {
     }
 }
 
-function pontuacaoMinima(progresso, barreiras, campos) {
+function pontuacaoMinima(progresso, barreiras) {
     let minimo = parseInt(progresso.elemento.innerHTML)
     let deslocamento = parseInt(barreiras.deslocamento)
-
-    let abertura = parseInt(campos.abertura)
-    let espaco = parseInt(campos.espaco)
 
     switch(minimo){
         case 5:
             deslocamento = 5
-            abertura = deslocamento - 100
-            espaco = deslocamento - 100
         break 
         case 15:
             deslocamento = 8
-            abertura = deslocamento - 100
-            espaco = deslocamento - 100
         break 
         case 20:
             deslocamento = 9
-            abertura = deslocamento - 100
-            espaco = deslocamento - 100
         break 
         case 25:
             deslocamento = 10
-            abertura = deslocamento - 100
-            espaco = deslocamento - 100
         break 
     }
 
-    return [deslocamento, espaco, abertura]
+    return deslocamento
 }
 
 function EspacoAbertura(abertura, espaco) {
